@@ -1,0 +1,64 @@
+<div class="cover-photo">
+  <% if @user.cover_photo.attached? %>
+    <%= image_tag(@user.cover_photo) %>
+  <% end %>
+</div>
+
+<div class="ribbon">
+  <div class="container">
+    <div class="avatar">
+      <% if @user.avatar.attached? %>
+        <%= image_tag(@user.avatar) %>
+      <% end %>
+    </div>
+
+    <% if current_user&.id == @user.id %>
+      <div class="edit-profile-btn">
+        <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %>
+      </div>
+      <% else %>
+
+    <% end %>
+
+  </div>
+<div>
+
+<div class="container">
+  <div class="header">
+
+    <div class="info-box">
+      <h1><%= full_name %></h1>
+      <p>@<%= @user.username %></p>
+      <p><%= @user.about %></p>
+    </div>
+
+    <div class="videos-space">
+      <% if current_user&.id == @user.id %>
+      <div class="new-video-btn">
+        <%= link_to 'Upload Video', new_video_path %>
+      </div>
+      <% else %>
+
+    <% end %>
+
+        <h5>Videos</h5>
+        <% @user_videos.each do |video| %>
+            <ul class="video-list">
+              <li class="video">
+                <%= link_to video do %>
+
+                <div class="video-image">
+                  <% if video.thumbnail.attached? %>
+                    <%= image_tag(video.thumbnail) %>
+                  <% end %>
+                </div>
+
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+    </div>
+
+
+  </div>
+</div>
